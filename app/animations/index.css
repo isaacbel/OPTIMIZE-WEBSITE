@@ -1,0 +1,8 @@
+/* Main Animations Index - Import all animation files */
+
+@import './hashtag-animations.css';
+@import './hero-animations.css';
+@import './contact-animations.css';
+@import './common-animations.css';
+@import './divider-animations.css';
+
