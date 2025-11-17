@@ -1,16 +1,15 @@
-import EventsHeroSection from '../components/EventsHeroSection';
 
+import EventsHeroSection from '../components/EventsHeroSection';
 import EventsSection from '../components/EventsSection';
+import UpcomingEventsSection from '../components/UpcomingEventsSection';
 
 export default function EventsPage() {
   return (
     <>
       <EventsHeroSection />
-      {/* Your event cards */}
-
-
-
-      
+      <EventsSection />
+      <UpcomingEventsSection />
     </>
   );
 }
+
