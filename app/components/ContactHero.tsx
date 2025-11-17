@@ -27,18 +27,21 @@ export default function ContactHero() {
       {/* Cosmic Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a001a] to-black" />
       
-      {/* Animated Nebula Orbs */}
+      {/* Animated Nebula Orbs - Adjusted for responsiveness */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-yellow-500/15 rounded-full blur-3xl animate-pulse delay-700" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        {/* Orb 1: Smaller on mobile, positioned differently */}
+        <div className="absolute top-5 left-5 w-64 h-64 md:top-10 md:left-10 md:w-[500px] md:h-[500px] bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
+        {/* Orb 2: Smaller on mobile, positioned differently */}
+        <div className="absolute bottom-10 right-5 w-48 h-48 md:bottom-20 md:right-20 md:w-[400px] md:h-[400px] bg-yellow-500/15 rounded-full blur-3xl animate-pulse delay-700" />
+        {/* Orb 3: Smaller on mobile, positioned differently */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 md:w-[600px] md:h-[600px] bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
-      {/* Floating 3D Icons with Parallax */}
-      <Floating3DIcon left="8%" top="12%" delay="0s" icon={<Mail className="w-14 h-14" />} depth={30} />
-      <Floating3DIcon left="72%" top="18%" delay="2s" icon={<Send className="w-12 h-12 rotate-12" />} depth={40} />
-      <Floating3DIcon left="18%" top="62%" delay="4s" icon={<MessageCircle className="w-13 h-13" />} depth={25} />
-      <Floating3DIcon left="68%" top="68%" delay="6s" icon={<Rocket className="w-11 h-11 -rotate-45" />} depth={35} />
+      {/* Floating 3D Icons with Parallax - Adjusted for mobile visibility (smaller icons) */}
+      <Floating3DIcon left="8%" top="12%" delay="0s" icon={<Mail className="w-8 h-8 md:w-14 md:h-14" />} depth={30} />
+      <Floating3DIcon left="72%" top="18%" delay="2s" icon={<Send className="w-7 h-7 md:w-12 md:h-12 rotate-12" />} depth={40} />
+      <Floating3DIcon left="18%" top="62%" delay="4s" icon={<MessageCircle className="w-7 h-7 md:w-13 md:h-13" />} depth={25} />
+      <Floating3DIcon left="68%" top="68%" delay="6s" icon={<Rocket className="w-6 h-6 md:w-11 md:h-11 -rotate-45" />} depth={35} />
 
       {/* Floating Particles (rising from bottom) */}
       {particles.map((p) => (
@@ -53,8 +56,8 @@ export default function ContactHero() {
         />
       ))}
 
-      {/* Glowing "Send Message" Text */}
-      <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20">
+      {/* Glowing "OPTIMIZE" Text - Adjusted position for better flow on mobile */}
+      <div className="absolute bottom-16 md:bottom-32 left-1/2 -translate-x-1/2 z-20">
         <div className="relative">
           {/* Multi-layer glow */}
           <div className="absolute inset-0 bg-yellow-400 blur-3xl animate-ping opacity-60 scale-150" />
@@ -62,7 +65,7 @@ export default function ContactHero() {
           <div className="absolute inset-0 bg-purple-500 blur-xl animate-ping opacity-30 scale-110 delay-600" />
 
           {/* Gradient + 3D Text */}
-          <h3 className="relative text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-400 bg-clip-text text-transparent animate-fade-in delay-700 drop-shadow-2xl">
+          <h3 className="relative text-xl md:text-4xl font-bold bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-400 bg-clip-text text-transparent animate-fade-in delay-700 drop-shadow-2xl">
             OPTIMIZE
           </h3>
 
@@ -73,22 +76,22 @@ export default function ContactHero() {
         </div>
       </div>
 
-      {/* Typing Dots – HIGHER (above text) */}
-      <div className="absolute bottom-44 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+      {/* Typing Dots – HIGHER (above text) - Adjusted position for better flow on mobile */}
+      <div className="absolute bottom-28 md:bottom-44 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         <Dot3D delay="0s" />
         <Dot3D delay="0.2s" />
         <Dot3D delay="0.4s" />
       </div>
 
-      {/* Hero Text with Parallax */}
+      {/* Hero Text with Parallax - Adjusted text sizes */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 max-w-6xl mx-auto">
         <h1
-          className="text-7xl md:text-9xl font-bold text-white drop-shadow-2xl animate-fade-in"
+          className="text-5xl sm:text-6xl md:text-9xl font-bold text-white drop-shadow-2xl animate-fade-in"
           style={{ fontFamily: "var(--font-patua-one)" }}
         >
           Contact Us
         </h1>
-        <p className="mt-6 text-lg md:text-2xl text-gray-300 font-light leading-relaxed max-w-3xl animate-fade-in delay-300">
+        <p className="mt-4 md:mt-6 text-base md:text-2xl text-gray-300 font-light leading-relaxed max-w-3xl animate-fade-in delay-300">
           Get in touch with us for more details about our activities, partnerships, or events.
         </p>
       </div>
@@ -123,7 +126,7 @@ function Floating3DIcon({ left, top, delay, icon, depth }: { left: string; top: 
 function Dot3D({ delay }: { delay: string }) {
   return (
     <div
-      className="w-4 h-4 md:w-5 md:h-5 bg-gradient-to-b from-yellow-300 to-orange-400 rounded-full animate-bounce-3d shadow-lg"
+      className="w-3 h-3 md:w-5 md:h-5 bg-gradient-to-b from-yellow-300 to-orange-400 rounded-full animate-bounce-3d shadow-lg"
       style={{ animationDelay: delay }}
     />
   );
@@ -134,7 +137,7 @@ function Dot3D({ delay }: { delay: string }) {
 function OrbitSparkle({ delay }: { delay: string }) {
   return (
     <div
-      className="absolute w-2 h-2 bg-white rounded-full animate-orbit"
+      className="absolute w-1.5 h-1.5 bg-white rounded-full animate-orbit"
       style={{ animationDelay: delay }}
     />
   );
@@ -144,7 +147,7 @@ function OrbitSparkle({ delay }: { delay: string }) {
 function Sparkle({ left, top, delay }: { left: string; top: string; delay: string }) {
   return (
     <div
-      className="absolute w-2 h-2 bg-white rounded-full animate-ping"
+      className="absolute w-1.5 h-1.5 bg-white rounded-full animate-ping"
       style={{ left, top, animationDelay: delay }}
     />
   );

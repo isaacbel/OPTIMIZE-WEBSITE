@@ -3,10 +3,29 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+// Helper function to get initial particle position
+const getInitialPosition = () => {
+  if (typeof window !== 'undefined') {
+    return {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight
+    };
+  }
+  // Fallback for SSR - these values will be replaced on client side
+  return { x: 0, y: 0 };
+};
+
 export default function AboutHeader() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // State to hold initial positions after client-side rendering
+  const [initialPositions, setInitialPositions] = useState<Array<{ x: number, y: number }>>([]);
 
   useEffect(() => {
+    // Initialize particle positions on the client side
+    setInitialPositions(
+      [...Array(6)].map(() => getInitialPosition())
+    );
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -15,18 +34,18 @@ export default function AboutHeader() {
   }, []);
 
   return (
-    <section className="relative h-screen overflow-hidden bg-black flex flex-col items-center justify-center px-6 text-center">
+    <section className="relative h-screen overflow-hidden bg-black flex flex-col items-center justify-center px-4 sm:px-6 text-center">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-blue-900 opacity-50" />
       
-      {/* Floating Particles */}
-      {[...Array(6)].map((_, i) => (
+      {/* Floating Particles - Use initialPositions state */}
+      {initialPositions.map((pos, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-white rounded-full opacity-60"
           initial={{ 
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight 
+            x: pos.x,
+            y: pos.y
           }}
           animate={{
             y: [null, -100],
@@ -43,9 +62,9 @@ export default function AboutHeader() {
         />
       ))}
 
-      {/* Rocket Animation (flies in from bottom-left) */}
+      {/* Rocket Animation (flies in from bottom-left) - Adjusted position and size for mobile */}
       <motion.div
-        className="absolute bottom-10 left-10 md:bottom-20 md:left-20"
+        className="absolute bottom-5 left-5 md:bottom-20 md:left-20"
         initial={{ x: -300, y: 300, rotate: -45 }}
         animate={{ 
           x: [null, 100, -50],
@@ -59,7 +78,7 @@ export default function AboutHeader() {
           ease: "easeInOut"
         }}
       >
-        <RocketSVG />
+        <RocketSVG size={50} mdSize={80} />
       </motion.div>
 
       {/* Main Content */}
@@ -69,8 +88,8 @@ export default function AboutHeader() {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="relative z-10 max-w-4xl mx-auto"
       >
-        {/* Title - Letter by Letter Stagger */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-patua-one">
+        {/* Title - Letter by Letter Stagger - Adjusted text size for mobile */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 font-patua-one">
           {"About Us".split("").map((char, i) => (
             <motion.span
               key={i}
@@ -87,12 +106,12 @@ export default function AboutHeader() {
           ))}
         </h1>
 
-        {/* Subtitle */}
+        {/* Subtitle - Adjusted text size and margin for mobile */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.4 }}
-          className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-poppins leading-relaxed"
+          className="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-poppins leading-relaxed"
         >
           Discover the story behind our passion and purpose
         </motion.p>
@@ -103,16 +122,17 @@ export default function AboutHeader() {
   );
 }
 
-// Rocket SVG Component
-function RocketSVG() {
+// Rocket SVG Component - Now accepts a size prop
+function RocketSVG({ size, mdSize }: { size: number, mdSize: number }) {
   return (
     <svg
-      width="80"
-      height="80"
+      // Use dynamic size based on props
+      width={size}
+      height={size}
+      className={`drop-shadow-lg md:w-[${mdSize}px] md:h-[${mdSize}px]`}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="drop-shadow-lg"
     >
       <motion.path
         d="M13 10V3L4 14h7v7l9-11h-7z"
