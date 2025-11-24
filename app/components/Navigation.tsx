@@ -18,8 +18,8 @@ export default function Navigation() {
   const pathname = usePathname();
   const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
   const [isVisible, setIsVisible] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
-  const navRef = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
   const lastScrollY = useRef(0);
 
   // Update pill position
@@ -27,7 +27,12 @@ export default function Navigation() {
     const updatePillPosition = () => {
       // Only calculate pill position for desktop view
       if (window.innerWidth >= 768) {
-        const activeIndex = navItems.findIndex(item => item.path === pathname);
+        // Check if pathname starts with /events (for individual event pages)
+        const isEventsPage = pathname === '/events' || pathname.startsWith('/events/');
+        const activeIndex = isEventsPage 
+          ? navItems.findIndex(item => item.path === '/events')
+          : navItems.findIndex(item => item.path === pathname);
+        
         if (activeIndex !== -1 && navRef.current) {
           const activeLink = navRef.current.querySelector(
             `[data-index="${activeIndex}"]`
@@ -78,8 +83,12 @@ export default function Navigation() {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  const NavLink = ({ item, index, isMobile = false }) => {
-    const isActive = pathname === item.path;
+  const NavLink = ({ item, index, isMobile = false }: { item: typeof navItems[0], index: number, isMobile?: boolean }) => {
+    // Check if pathname starts with /events (for individual event pages)
+    const isEventsPage = pathname === '/events' || pathname.startsWith('/events/');
+    const isActive = item.path === '/events' 
+      ? isEventsPage 
+      : pathname === item.path;
     const baseClasses = "flex items-center justify-center transition-all duration-300";
     const desktopStyle = {
       minWidth: index < 2 ? '110px' : '100px',

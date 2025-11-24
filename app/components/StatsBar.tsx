@@ -34,9 +34,10 @@ export default function StatsBar({
 }: StatsBarProps) {
   return (
     <div
-      className={`w-[70%] max-w-6xl flex justify-around items-center gap-6 px-12  rounded-full border-2  ${paddingX} py-8   backdrop-blur-md animate-fadeIn ${className}`}
+      className={`w-[90%] sm:w-[80%] md:w-[70%] max-w-6xl flex flex-wrap sm:flex-nowrap justify-around items-center gap-4 sm:gap-6 px-4 sm:px-8 md:px-12 rounded-full border-2 ${paddingX} py-6 sm:py-8 backdrop-blur-md animate-fadeIn ${className}`}
       style={{
-        height,
+        minHeight: height,
+        height: 'auto',
         borderColor,
         background: `rgba(255, 255, 255, ${bgOpacity})`,
         boxShadow: `0 12px 30px ${shadowColor}, 0 0 40px rgba(255,215,120,0.3)`,
@@ -44,11 +45,11 @@ export default function StatsBar({
       }}
     >
       {stats.map((item, i) => (
-        <div key={i} className="text-center flex-1 flex flex-col items-center justify-center">
+        <div key={i} className="text-center flex-1 flex flex-col items-center justify-center min-w-[80px] sm:min-w-0">
           {/* Optional Icon */}
           {item.icon && (
             <item.icon
-              className="w-8 h-8 mb-2 animate-pulse"
+              className="w-6 h-6 sm:w-8 sm:h-8 mb-1 sm:mb-2 animate-pulse"
               style={{ color: numberColor }}
             />
           )}
@@ -58,7 +59,7 @@ export default function StatsBar({
             className="font-black animate-countUp"
             style={{
               fontFamily: 'var(--font-patua-one)',
-              fontSize: 'clamp(36px, 5vw, 48px)',
+              fontSize: 'clamp(24px, 4vw, 48px)',
               color: numberColor,
               lineHeight: 1,
             }}
@@ -68,11 +69,12 @@ export default function StatsBar({
 
           {/* Label */}
           <div
-            className="mt-1 font-bold uppercase tracking-widest text-xs"
+            className="mt-1 font-bold uppercase tracking-widest"
             style={{
               fontFamily: 'var(--font-patua-one)',
               color: labelColor,
               letterSpacing: '0.1em',
+              fontSize: 'clamp(8px, 1.5vw, 12px)',
             }}
           >
             {item.label}

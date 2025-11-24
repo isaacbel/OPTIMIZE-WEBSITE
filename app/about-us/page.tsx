@@ -18,7 +18,6 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* Optional: Extra Spacer if Footer is Fixed */}
       <div className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24"></div>
     </main>
   );

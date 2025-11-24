@@ -11,17 +11,14 @@ const getInitialPosition = () => {
       y: Math.random() * window.innerHeight
     };
   }
-  // Fallback for SSR - these values will be replaced on client side
   return { x: 0, y: 0 };
 };
 
 export default function AboutHeader() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  // State to hold initial positions after client-side rendering
   const [initialPositions, setInitialPositions] = useState<Array<{ x: number, y: number }>>([]);
 
   useEffect(() => {
-    // Initialize particle positions on the client side
     setInitialPositions(
       [...Array(6)].map(() => getInitialPosition())
     );

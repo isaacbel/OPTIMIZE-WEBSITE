@@ -45,7 +45,7 @@ export default function EventsHeroSection() {
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center pt-32 pb-20">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center pt-24 sm:pt-32 pb-12 sm:pb-20">
         {/* Title */}
         <h1 
           className="font-normal text-white text-center mb-8 animate-slideIn"
@@ -77,7 +77,7 @@ export default function EventsHeroSection() {
       </div>
 
       {/* StatsBar at Bottom */}
-      <div className="relative z-10 w-full flex justify-center pb-8 px-6 animate-slideIn" style={{ animationDelay: '0.6s' }}>
+      <div className="relative z-10 w-full flex justify-center pb-6 sm:pb-8 px-4 sm:px-6 animate-slideIn" style={{ animationDelay: '0.6s' }}>
         <StatsBar
           stats={[
             { number: '3', label: 'Events', icon: Calendar },
@@ -91,7 +91,7 @@ export default function EventsHeroSection() {
           bgOpacity={0.15}
           shadowColor="rgba(0,0,0,0.1)"
           height="140px"
-          paddingX="px-20"
+          paddingX="px-4 sm:px-8 md:px-20"
           className="bg-black/15 backdrop-blur-md border-2"
         />
       </div>

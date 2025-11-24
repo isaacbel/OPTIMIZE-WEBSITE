@@ -9,10 +9,8 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    // Start exit animation
     setIsTransitioning(true);
 
-    // After exit animation, update content and start enter animation
     const timeout = setTimeout(() => {
       setDisplayChildren(children);
       setIsTransitioning(false);

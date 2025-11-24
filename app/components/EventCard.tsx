@@ -18,13 +18,14 @@ export default function EventCard({
   index = 0,
 }: EventCardProps) {
   return (
-    <div
+    <Link
+      href={href}
       className={`
         group relative overflow-hidden rounded-2xl sm:rounded-3xl
         bg-gradient-to-br from-[#FFEBB4] to-[#FFD166]
         p-5 sm:p-6 md:p-8 shadow-xl transition-all duration-500
         hover:shadow-2xl hover:-translate-y-3
-        animate-fadeInUp-fast
+        animate-fadeInUp-fast block cursor-pointer
       `}
       style={{
         width: '100%',
@@ -79,15 +80,14 @@ export default function EventCard({
         />
 
         {/* Arrow Button – appears on hover */}
-        <Link
-          href={href}
+        <div
           className={`
             absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5
             flex h-11 w-11 sm:h-12 sm:w-12 md:h-14 md:w-14 items-center justify-center
             rounded-full bg-white shadow-lg backdrop-blur-sm
-            transition-all duration-300 hover:scale-110
+            transition-all duration-300
             group-hover:opacity-100 opacity-0
-            border-2
+            border-2 pointer-events-none
           `}
           style={{ borderColor: 'rgba(255, 209, 102, 0.3)' }}
         >
@@ -101,11 +101,11 @@ export default function EventCard({
             />
           </svg>
           <span className="sr-only">View event</span>
-        </Link>
+        </div>
       </div>
 
       {/* Subtle shine overlay */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/15 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-    </div>
+    </Link>
   );
 }
