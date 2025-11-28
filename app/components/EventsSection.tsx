@@ -2,7 +2,6 @@
 'use client';
 
 import EventCard from './EventCard';
-import Link from 'next/link';
 
 export default function EventsSection() {
   return (
@@ -65,42 +64,6 @@ export default function EventsSection() {
             index={2}
           />
         </div>
-
-        {/* Discover Button */}
-<div className="w-full flex justify-center">
-  <Link
-    href="/events"
-    className="relative overflow-hidden rounded-full font-semibold px-8 sm:px-12 py-3 sm:py-4 shadow-lg transition-all duration-500 group border-2 border-transparent"
-    style={{
-      backgroundColor: 'white',
-      color: '#FF8C3A',
-      fontFamily: 'var(--font-poppins)',
-      fontSize: 'clamp(16px, 2vw, 18px)',
-    }}
-  >
-    
-    <span
-      className="absolute inset-0 bg-linear-to-r from-[#FF8C3A] to-[#FFA258] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out rounded-full"
-      style={{
-        zIndex: 0,
-      }}
-    />
-
-    
-    <span className="relative z-10 group-hover:text-white transition-colors duration-500">
-      Discover
-    </span>
-
-    
-    <style jsx>{`
-      .group:hover {
-        border-color: #ff8c3a;
-        background-color: #fff5eb; /* light orange tint behind animation */
-      }
-    `}</style>
-  </Link>
-</div>
-
       </div>
     </section>
   );
